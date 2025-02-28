@@ -165,7 +165,7 @@ def main():
     print('\n')
 
     # Run search algorithm
-    path = A_Star(graph, heuristics, 'Arad', 'Giurgiu')
+    path = A_Star(graph, heuristics, 'Arad', 'Bucharest')
     print('Solución:', path)
 
 
