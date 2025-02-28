@@ -29,8 +29,8 @@ class AStar(object):
         self.grid_width = 6
 
     def init_grid(self):
-        walls = ((0, 3), (0, 4), (1, 5), (2, 0), (2, 2), 
-                 (2, 3), (2, 4), (3, 0), (3, 2), (3, 3), (4, 0), (5,0), (5,1), (5,2), (5,4))
+        walls = ((0, 5), (1, 0), (1, 1), (1, 5), (2, 3), 
+                 (3, 1), (3, 2), (3, 5), (4, 1), (4, 4), (5, 1))
         for x in range(self.grid_width):
             for y in range(self.grid_height):
                 if (x, y) in walls:
@@ -70,15 +70,15 @@ class AStar(object):
         @returns adjacent cells list 
         """
         cells = []
-        if cell.x < self.grid_width-1:
-            cells.append(self.get_cell(cell.x+1, cell.y))
-        if cell.y > 0:
-            cells.append(self.get_cell(cell.x, cell.y-1))
-        if cell.x > 0:
-            cells.append(self.get_cell(cell.x-1, cell.y))
-        if cell.y < self.grid_height-1:
+        if cell.y+1 < self.grid_width: #right
             cells.append(self.get_cell(cell.x, cell.y+1))
-
+        if cell.x+1 < self.grid_height: #down
+            cells.append(self.get_cell(cell.x+1, cell.y))
+        if cell.y-1 >= 0: #left
+            cells.append(self.get_cell(cell.x, cell.y-1))
+        if cell.x-1 >= 0: #up
+            cells.append(self.get_cell(cell.x-1, cell.y))
+     
         return cells
 
     def display_path(self):
